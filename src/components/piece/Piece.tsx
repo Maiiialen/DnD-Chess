@@ -2,6 +2,7 @@ import type { CSSProperties, FC } from 'react'
 import { DragPreviewImage, useDrag } from 'react-dnd'
 import { ItemTypes } from '../properties/ItemTypes'
 import { PieceType } from "../properties/interfaces"
+import useBoardStore from '../../store/Store'
 import "./Piece.scss";
 
 const knightStyle: CSSProperties = {
@@ -25,13 +26,13 @@ const Piece: FC<PieceType> = ({ row, column, name, type }) => {
   if (name === undefined) return <div></div>;
   return (
     <>
-      <DragPreviewImage connect={preview} src={`../pieces/${name}.svg`} />
+      {/* <DragPreviewImage connect={preview} src={new URL(`../pieces/${name}.svg`, import.meta.url).href} /> */}
       <div className="dragable" ref={drag}
         style={{
           ...knightStyle,
           opacity: isDragging ? 0.5 : 1,
         }}>
-        <img src={`../pieces/${name}.svg`} alt={name} />
+        <img src={`data:image/svg+xml;base64,${useBoardStore.getState().images[name]}`} alt={name} />
       </div>
     </>
   )
