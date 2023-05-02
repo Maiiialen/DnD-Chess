@@ -6,19 +6,16 @@ import "./Cell.scss"
 import { ItemTypes } from "../properties/ItemTypes"
 import { CellProps } from "../properties/interfaces"
 import useBoardStore from '../../store/Store'
+import { canDropPiece } from '../properties/interfaces'
 
-
-function canDropPiece(type: string | undefined, row: number, column: number) {
-  return true
-}
 
 const Cell: FC<CellProps> = ({ row, column }) => {
   const labels = ["a", "b", "c", "d", "e", "f", "g", "h"]
   const ownPiece = useBoardStore((state) => state.pieces.find((piece) => piece.row === row && piece.column === column))
 
   const [{ isOver, canDrop }, drop] = useDrop(() => ({
-    accept: ItemTypes.KNIGHT,
-    canDrop(piece: PieceType) { return ownPiece === undefined && canDropPiece(piece.type, row, column) },
+    accept: [ItemTypes.PAWN, ItemTypes.ROOK, ItemTypes.KNIGHT, ItemTypes.BISHOP, ItemTypes.QUEEN, ItemTypes.KING ],
+    canDrop(piece: PieceType) { return canDropPiece(piece, row, column) },
     drop(piece: PieceType) { useBoardStore.getState().movePiece(piece, row, column) },
     collect: (monitor) => ({
       isOver: monitor.isOver(),

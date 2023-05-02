@@ -13,7 +13,7 @@ const knightStyle: CSSProperties = {
 const Piece: FC<PieceType> = ({ row, column, name, type }) => {
   const [{ isDragging }, drag, preview] = useDrag(
     () => ({
-      type: ItemTypes.KNIGHT,
+      type: type,
       item: { row, column, name, type },
       collect: (monitor) => ({
         isDragging: !!monitor.isDragging(),
