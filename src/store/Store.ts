@@ -198,7 +198,17 @@ const useBoardStore = create<BoardStore>()(
         type: "ROOK"
       },
     ],
-    movePiece: () => null,
+    movePiece: (piece, row, column) => {
+      const newPieces = get().pieces
+      const foundedPiece = newPieces.find((checkPiece) => piece.row === checkPiece.row && piece.column === checkPiece.column)
+      if (foundedPiece) {
+        foundedPiece.row = row
+        foundedPiece.column = column
+      }
+      set(() => ({
+        pieces: newPieces
+      }))
+    },
     beatPiece: () => null,
   }))
 )

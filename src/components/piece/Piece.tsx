@@ -1,7 +1,7 @@
 import type { CSSProperties, FC } from 'react'
 import { DragPreviewImage, useDrag } from 'react-dnd'
 import { ItemTypes } from '../properties/ItemTypes'
-import { PieceProps } from "../properties/interfaces"
+import { PieceType } from "../properties/interfaces"
 import "./Piece.scss";
 
 const knightStyle: CSSProperties = {
@@ -10,10 +10,11 @@ const knightStyle: CSSProperties = {
   cursor: 'move',
 }
 
-const Piece: FC<PieceProps> = function Box({ name }: { name: string }) {
+const Piece: FC<PieceType> = ({ row, column, name, type }) => {
   const [{ isDragging }, drag, preview] = useDrag(
     () => ({
       type: ItemTypes.KNIGHT,
+      item: { row, column, name, type },
       collect: (monitor) => ({
         isDragging: !!monitor.isDragging(),
       }),
@@ -21,7 +22,7 @@ const Piece: FC<PieceProps> = function Box({ name }: { name: string }) {
     [],
   )
 
-  if (name === "") return <div></div>;
+  if (name === undefined) return <div></div>;
   return (
     <>
       <DragPreviewImage connect={preview} src={`../pieces/${name}.svg`} />

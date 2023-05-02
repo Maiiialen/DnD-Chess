@@ -1,7 +1,7 @@
-import { Piece } from "../components/properties/interfaces"
+import { PieceType } from "../components/properties/interfaces"
 
 export interface BoardStore {
-  pieces: Piece[],
-  movePiece: () => null,
+  pieces: PieceType[],
+  movePiece: (piece: PieceType, row: number, column: number) => void,
   beatPiece: () => null,
 }
