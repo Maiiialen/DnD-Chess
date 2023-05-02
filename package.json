@@ -1,5 +1,6 @@
 {
   "name": "dnd-chess",
+  "homepage" : "https://maiiialen.github.io/DnD-Chess/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
