@@ -1,6 +1,6 @@
 import { CSSProperties } from "react";
 import { useDragLayer } from "react-dnd";
-import useBoardStore from "../../store/Store";
+import useBoardStore from "../store/Store";
 
 interface XYCoord {
   x: number;
