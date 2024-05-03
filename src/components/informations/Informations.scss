@@ -12,13 +12,13 @@
 
     .name {
         background-color: lightgray;
-        width: calc(100% - 40px);
+        width: 100%;
         padding: 10px 20px;
     }
 
     .moves {
         background-color: gray;
-        width: calc(100% - 40px);
+        width: 100%;
         max-height: 16vh;
         overflow: scroll;
         padding: 10px 20px;

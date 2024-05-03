@@ -18,7 +18,7 @@ const Cell: FC<CellProps> = ({ row, column }) => {
 
   const [{ isOver, canDrop }, drop] = useDrop(() => ({
     accept: ItemTypes.KNIGHT,
-    canDrop(piece: PieceType) { return ownPiece === undefined && canDropPiece(piece.type, row, column) },
+    canDrop(piece: PieceType) { return useBoardStore.getState().pieces.find((piece) => piece.row === row && piece.column === column) === undefined && canDropPiece(piece.type, row, column) },
     drop(piece: PieceType) { useBoardStore.getState().movePiece(piece, row, column) },
     collect: (monitor) => ({
       isOver: monitor.isOver(),
