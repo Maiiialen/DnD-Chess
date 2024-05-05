@@ -3,8 +3,9 @@ import { defineConfig } from 'vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: "https://maiiialen.github.io/DnD-Chess/",
   plugins: [react()],
   build: {
-    outDir: 'docs',
+    outDir: 'dist',
   }
 })
